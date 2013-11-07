@@ -140,7 +140,7 @@ class PiMinerInfo:
 		rej = self.abbrev(d['Rejected'])
 		hw = self.abbrev(d['Hardware Errors'])
 		s1 = 'A:%s R:%s H:%s' % (acc, rej, hw)
-		s2 = 'avg:%s' % self.hashrate(float(d['MHS av']))
+		s2 = 'Avg:%s' % self.hashrate(float(d['MHS av']))
 		return [s1, s2]
 	  except Exception as e:
 		return [str(e), str(e)]
@@ -234,8 +234,8 @@ class PiMinerInfo:
 		s = self.cg_rpc(self.host, self.port, 'coin')
 		self.screen4[1] = self.parse_coin(s)
 		
-		self.screen4[0] = 'time: %s' % self.uptime
-		self.screen2[1] = 'error: %.2f%%' % self.errRate
+		self.screen4[0] = 'Uptime: %s' % self.uptime
+		self.screen2[1] = 'Error: %.2f%%' % self.errRate
 		
 		now = time.time()
 		since = now - self.lastCheck
