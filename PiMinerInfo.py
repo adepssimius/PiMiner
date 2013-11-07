@@ -25,7 +25,7 @@ class PiMinerInfo:
 	screen3 	= ['no data','no data']
 	screen4 	= ['no data','no data']
 	screen5 	= ['no data','no data']
-	currency 	= 'USD' 				#USD GBP EUR JPY AUD CAD CHF CNY DKK HKD PLN RUB SEK SGD THB NOK CZK
+	currency 	= 'GBP' 				#USD GBP EUR JPY AUD CAD CHF CNY DKK HKD PLN RUB SEK SGD THB NOK CZK
 	dollars 	= ['USD', 'AUD', 'CAD']	#currencies with displayable symbols
 	lastCheck 	= time.time()			#time of last price check
 	priceWait 	= 60.0					#interval between price checks
