@@ -235,8 +235,6 @@ class PiMinerInfo:
 	
 	def refresh(self):
 		
-		self.checkBalance()
-		
 		s = self.cg_rpc(self.host, self.port, 'summary')
 		self.screen1 = self.parse_summary(s)
 
@@ -246,7 +244,6 @@ class PiMinerInfo:
 		s = self.cg_rpc(self.host, self.port, 'config')
 		self.screen2[0] = self.parse_config(s)
 		s = self.cg_rpc(self.host, self.port, 'coin')
-		self.screen4[1] = self.balance
 		
 		self.screen4[0] = 'Uptime: %s' % self.uptime
 		self.screen2[1] = 'Error: %.2f%%' % self.errRate
@@ -256,6 +253,9 @@ class PiMinerInfo:
 		if since >= self.priceWait:
 			self.checkPrice()
 			self.lastCheck = time.time()
+			self.checkBalance()
+			
+		self.screen4[1] = self.balance
 			
 		self.screen5[0] = 'last: %s' % self.priceLast
 		self.screen5[1] = 'H:' + self.priceHi + ' L:' + self.priceLo
