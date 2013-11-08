@@ -38,6 +38,7 @@ class PiMinerInfo:
 	  self.host = self.get_ipaddress()
 	  self.refresh()
 	  self.checkPrice()
+	  self.checkBalance()
 	  
 	def reportError(self, s):
 		self.screen1 = [s, s]
