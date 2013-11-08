@@ -32,6 +32,7 @@ class PiMinerInfo:
 	priceLast	= '-'					#last price via mtgox
 	priceLo 	= '-'					#low price
 	priceHi 	= '-'					#high price
+	balance		= '-'					#current balance data
 
 	def __init__(self):
 	  self.host = self.get_ipaddress()
@@ -220,8 +221,21 @@ class PiMinerInfo:
 			self.priceLast = ('%.2f ' % float(data['last']['value']) if data else '-') + self.currency
 			self.priceLo = '%.2f' % float(data['low']['value']) if data else '-'
 			self.priceHi = '%.2f' % float(data['high']['value']) if data else '-'
+			
+	def checkBalance(self):
+		try:
+			url = 'https://arthurguy.co.uk/bitcoin'
+			f = urllib.urlopen(url)
+		except Exception as e:
+			self.reportError(e)
+			return None
+		data = None
+		if f:
+			self.balance = f.read()
 	
 	def refresh(self):
+		
+		self.checkBalance()
 		
 		s = self.cg_rpc(self.host, self.port, 'summary')
 		self.screen1 = self.parse_summary(s)
@@ -232,7 +246,7 @@ class PiMinerInfo:
 		s = self.cg_rpc(self.host, self.port, 'config')
 		self.screen2[0] = self.parse_config(s)
 		s = self.cg_rpc(self.host, self.port, 'coin')
-		self.screen4[1] = ''
+		self.screen4[1] = self.balance
 		
 		self.screen4[0] = 'Uptime: %s' % self.uptime
 		self.screen2[1] = 'Error: %.2f%%' % self.errRate
