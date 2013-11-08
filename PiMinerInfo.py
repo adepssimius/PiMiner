@@ -232,7 +232,7 @@ class PiMinerInfo:
 		s = self.cg_rpc(self.host, self.port, 'config')
 		self.screen2[0] = self.parse_config(s)
 		s = self.cg_rpc(self.host, self.port, 'coin')
-		self.screen4[1] = self.parse_coin(s)
+		self.screen4[1] = ''
 		
 		self.screen4[0] = 'Uptime: %s' % self.uptime
 		self.screen2[1] = 'Error: %.2f%%' % self.errRate
