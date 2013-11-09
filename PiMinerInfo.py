@@ -256,7 +256,7 @@ class PiMinerInfo:
 			self.lastCheck = time.time()
 			self.checkBalance()
 			
-		self.screen4[1] = 'Balance: ' + self.balance + 'BTC'
+		self.screen4[1] = 'Balance: ' + self.balance
 			
 		self.screen5[0] = 'last: %s' % self.priceLast
 		self.screen5[1] = 'H:' + self.priceHi + ' L:' + self.priceLo
